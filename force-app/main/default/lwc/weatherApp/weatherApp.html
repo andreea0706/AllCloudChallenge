@@ -1,0 +1,61 @@
+<template>
+    <lightning-card  title="Weather App" icon-name="custom:custom60">
+        <template if:true={isLoading}>
+            <div>
+                <lightning-spinner alternative-text="Loading" size="small"></lightning-spinner>
+            </div>
+        </template>
+        <lightning-layout multiple-rows>
+            <lightning-layout-item size="12" padding="around-small">
+                <template if:true={showData}>
+                    <div class="slds-align_absolute-center">Weather Tomorrow in {addressForDisplay}</div>
+                    <div class="slds-align_absolute-center">{meteoCode}</div>
+                    <div class="slds-align_absolute-center">Max temperature: {maxTemp} °C</div>
+                    <div class="slds-align_absolute-center">Min temperature: {minTemp} °C</div>
+                </template>
+                <template if:true={displayText}>
+                    <div class="slds-align_absolute-center">{displayText}</div>
+                </template>
+            </lightning-layout-item>
+            <lightning-layout-item size="6" padding="around-small" class="slds-align_absolute-center">
+                <lightning-input type="text"
+                                label="Post code" 
+                                value={postCode} 
+                                onchange={handleChangePostCode}
+                                max-length="10">
+                </lightning-input>
+            </lightning-layout-item>
+            <lightning-layout-item size="6" padding="around-small" class="slds-align_absolute-center">
+                <lightning-input type="text" 
+                                label="Street"
+                                value={street}
+                                onchange={handleChangeStreet}
+                                max-length="255">
+                </lightning-input>
+            </lightning-layout-item>
+            <lightning-layout-item size="6" padding="around-small" class="slds-align_absolute-center">
+                <lightning-input type="text"
+                                label="City"
+                                value={city} 
+                                onchange={handleChangeCity} 
+                                max-length="255">
+                </lightning-input>
+            </lightning-layout-item>
+            <lightning-layout-item size="6" padding="around-small" class="slds-align_absolute-center">
+                <lightning-input type="text"
+                                label="Country"
+                                value={country}
+                                onchange={handleChangeCountry}
+                                max-length="255">
+                </lightning-input>
+            </lightning-layout-item>
+            <lightning-layout-item size="6" padding="around-small" class="slds-align_absolute-center">
+                <lightning-button variant="brand"
+                                label="Check Weather"
+                                onclick={handleClick}
+                                class="slds-m-left_x-small">
+                </lightning-button>
+            </lightning-layout-item>
+        </lightning-layout>
+    </lightning-card>
+</template>
